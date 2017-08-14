@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
 	char buff[MAXLINE];
 	time_t ticks;
 
-	listenfd = Socket(AF_INET, SOCK_STREAM, 0);
+  	listenfd = Socket(AF_INET, SOCK_STREAM, 0);
 
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
@@ -33,5 +33,6 @@ int main(int argc, char const *argv[])
 
 		Close(connfd);
 	}
-	return 0;
+	
+	exit(0);
 }
