@@ -24,17 +24,23 @@ int main(int argc, char **argv)
     for ( ; ; ) {
         clilen = sizeof(cliaddr);
         if ((connfd = accept(listenfd, (SA*)&cliaddr, &clilen)) < 0) {
-            if (errno == EINTR)
+            if (errno == EINTR) {
+                printf("server got EINTR\n");
                 continue;  // back to for()
-            else
+            }
+            else {
                 err_sys("accept error");
+            }
         }
-        
+
         if ((childpid = Fork()) == 0) {  // child process
             Close(listenfd);  // close listening socket
             str_echo(connfd);  // process the request
             exit(0);
         }
+
+        printf("child proc id: %d\n", childpid);
+
         Close(connfd);  // parent closes connected socket
     }
 }
