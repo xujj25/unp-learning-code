@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gcc -D_GNU_SOURCE src/server.c -o bin/server -I include/ -lunp
+gcc -D_GNU_SOURCE src/client.c -o bin/client -I include/ -lunp
